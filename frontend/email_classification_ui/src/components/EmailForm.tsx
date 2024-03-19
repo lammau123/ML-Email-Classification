@@ -1,30 +1,43 @@
-
 import { useState } from 'react';
+import axios from 'axios';
 
 function EmailForm() {
     const [form, setForm] = useState({
-        subject: '',
-        body: ''
+        Subject: '',
+        Body: ''
       });
 
-    function handleSubmit(e) {
+    const [result, setResult] = useState('');
+
+    async function handleSubmit(e) {
         e.preventDefault();
+        try {
+            // Make a POST request to the API endpoint
+            const response = await axios.post('http://127.0.0.1:5000/predict', form);
+      
+            // Handle successful response
+            console.log('Response:', response.data);
+            setResult(response.data.type)
+          } catch (error) {
+            // Handle error
+            console.error('Error:', error);
+          }
     }
 
     return (
         <form>
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">Email Form</h5>
+                    <h5 className="card-title"></h5>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label">Subject</label>
                         <div className="col-sm-10">
                         <input type="text" className="form-control" id="inputEmail3" 
-                            value={form.subject}
+                            value={form.Subject}
                             onChange={e => {
                                 setForm({
                                   ...form,
-                                  subject: e.target.value
+                                  Subject: e.target.value
                                 });
                               }}/>
                         </div>
@@ -33,14 +46,22 @@ function EmailForm() {
                         <label className="col-sm-2 col-form-label">Body</label>
                         <div className="col-sm-10">
                         <textarea className="form-control" id="exampleFormControlTextarea1"
+                            rows={10}
+                            cols={50}
+                            value={form.Body}
                             onChange={e => {
                                 setForm({
                                 ...form,
-                                body: e.target.value
+                                Body: e.target.value
                                 });
                             }}>
-                            {form.body}
                         </textarea>
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <label className="col-sm-2 col-form-label">Type</label>
+                        <div className="col-sm-10 " style={{ textAlign: 'left' }}>
+                            <b>{result}</b>
                         </div>
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>Submit</button>
