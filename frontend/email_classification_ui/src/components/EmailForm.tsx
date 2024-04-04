@@ -13,7 +13,7 @@ function EmailForm() {
         e.preventDefault();
         try {
             // Make a POST request to the API endpoint
-            const response = await axios.post('http://127.0.0.1:5000/predict', form);
+            const response = await axios.post('http://127.0.0.1:5000/api/predict', form);
       
             // Handle successful response
             console.log('Response:', response.data);

@@ -1,0 +1,10 @@
+numPy
+scipy
+joblib
+threadpoolctl
+pandas
+scikit-learn
+nltk
+flask
+flask_cors
+imbalanced-learn

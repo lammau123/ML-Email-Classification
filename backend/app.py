@@ -8,7 +8,7 @@ model.load_model('./email_classification_model')
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/api/predict', methods=['POST'])
 @cross_origin()
 def predict():
     # Get the JSON data from the request
