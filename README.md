@@ -38,7 +38,7 @@ Email Classification is a very general term. It can be any email type that needs
 #### 4. IT
 #### 5. Sale
 
-7.	Implementation
+## 7.	Implementation
 The above diagram is the class diagram of email classification including three classes:
 -	SyntheticEmailExtraction class handles synthetic emails which were collected from ChatGPT.
 -	EnronEmailExtraction class handles enron’s extracted email dataset.
